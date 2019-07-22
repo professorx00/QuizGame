@@ -60,6 +60,16 @@
                     </div>
                 </div>
         </div>
+        <div class="container gameOver hidden">
+                <div id="end" class="flex-center flex-column">
+                    <h1 id="finalScore">0</h1>
+                    <form>
+                        <input type="text" name="username" id="username" placeholder="username"/>
+                        <button type="button" id="saveScoreBtn" class="btn" onclick="saveHighScore(event)">Save</button>
+                    </form>
+                    <a href="index.html" class="btn">Play Again</a>
+                </div>
+            </div>
         
         <script src="./assets/game.js" ></script>
     </body>

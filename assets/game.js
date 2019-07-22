@@ -1,5 +1,5 @@
 const docQuestion = $("#question");
-const docChoices = $(".choice-text");
+const docChoices = $("p.choice-text");
 const docScore = $("#scoreDisplay");
 const docProgressText = $("#progressText");
 const docProgressBarFullFill = $("#progressBarFull");
@@ -52,8 +52,8 @@ startGame = () => {
     getNewQuestion();
 }
 GameOver = () => {
-    localStorage.setItem("mostRecentScore", score);
-    return window.location.assign("gameOver.html");
+    $("div.game").hide();
+    $("div.gameOver").show();
 }
 
 getNewQuestion = () => {
