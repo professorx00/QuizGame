@@ -1,8 +1,9 @@
 const docQuestion = $("#question");
 const docChoices = $(".choice-text");
-const docScore = $("#score");
+const docScore = $("#scoreDisplay");
 const docProgressText = $("#progressText");
 const docProgressBarFullFill = $("#progressBarFull");
+const docHighSore = $("#highscore");
 let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
@@ -11,7 +12,9 @@ let availableQuestions =[]
 let questions = [];
 const CORRECT_BONUS = 10;
 const MAX_QUESTIONS = 10;
-let choice = [];
+let choices = [];
+
+let highScores = {};
 
 
 
@@ -21,8 +24,6 @@ fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=mu
         return res.json();
     })
     .then(loadedQuestions => {
-        // console.log(loadedQuestions.results); 
-        // console.log(loadedQuestions.results)
         questions = loadedQuestions.results.map(loadQuestion => {
            
             const formattedQuestion = {
@@ -31,14 +32,10 @@ fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=mu
 
             const answerChoices = [...loadQuestion.incorrect_answers];
             formattedQuestion.answer = Math.floor(Math.random() * 4) + 1;
-            // console.log(formattedQuestion.answer)
             answerChoices.splice(formattedQuestion.answer - 1, 0, loadQuestion.correct_answer);
-            // console.log("the answer are");
-            // console.log(answerChoices)
             answerChoices.forEach((choice, index) => {
                 formattedQuestion["choice" + (index + 1)] = choice;
             });
-            // console.log(formattedQuestion)
             return formattedQuestion;
         })
 
@@ -53,11 +50,10 @@ startGame = () => {
     score = 0;
     availableQuestions = [...questions]
     getNewQuestion();
-    // game.classList.remove("hidden");
-    // loader.classList.add('hidden');
 }
 GameOver = () => {
-    console.log("Game Over");
+    localStorage.setItem("mostRecentScore", score);
+    return window.location.assign("gameOver.html");
 }
 
 getNewQuestion = () => {
@@ -65,23 +61,49 @@ getNewQuestion = () => {
             GameOver();
         }
     questionCounter++;
-    // console.log((questionCounter / MAX_QUESTIONS) * 100);
     docProgressBarFullFill.css("width", `${(questionCounter / MAX_QUESTIONS) * 100}%`);
     docProgressText.text(`Question: ${questionCounter}/${MAX_QUESTIONS}`);
     let questionIndex = Math.floor(Math.random() * availableQuestions.length);
-    // console.log(questionIndex);
-    // console.log(availableQuestions);
-    // console.log(availableQuestions[questionIndex].question);
-    currentQuestion = availableQuestions[questionIndex].question;
-    // console.log(currentQuestion)
-    docQuestion.append(currentQuestion);
-    for(let x =0;x<docChoices.length;x++){
-        console.log(docChoices[x]);
+    currentQuestion = availableQuestions[questionIndex];
+    docQuestion.html(currentQuestion['question']);
+    for(let x=0;x<4;x++){
+        if($(docChoices[x]).attr("id")==`choice${x+1}`){
+            $(docChoices[x]).html(currentQuestion[`choice${x+1}`])
+        }
     }
-    // choices.forEach(choice => {
-    //     console.log(choice)
-    //     const number = choice.attr("data-number")
-    //     docChoices.append(currentQuestion['choice' + number])
-    // });
-
+    
+    availableQuestions.splice(questionIndex, 1);
+    acceptingAnswers = true;
+    
 }
+
+
+docChoices.on("click",(e)=>{
+    if (!acceptingAnswers) { return; };
+    acceptingAnswers = false;
+    const selectedChoice = e.target;
+    const selectedAnswer = selectedChoice.dataset['number'];
+
+    if (selectedAnswer == currentQuestion.answer) {
+        $(e.target).attr("data-right","correct")
+        $(e.target).addClass("correct")
+        console.log($(e.target));
+    }
+    else{
+        $(e.target).addClass("incorrect")
+    }
+    console.log($(e.target.class))
+    if ( $(e.target).attr("data-right") === 'correct') {
+        score += CORRECT_BONUS;
+        docScore.text(score)
+    }
+    $(e).addClass("incorrect");
+    setTimeout(() => {
+        $(e.target).attr("data-right","")
+        $(e.target).removeClass("correct")
+        $(e.target).removeClass("incorrect")
+        getNewQuestion();
+    }, 1000);
+
+})
+

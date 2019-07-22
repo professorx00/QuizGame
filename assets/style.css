@@ -38,3 +38,12 @@ p.choice-text{
     height: 3.5rem;
     background-color:#56a5eb;
 } 
+.correct{
+    background-color:#28a745;
+}
+.incorrect{
+    background-color: #dc3545;
+}
+.hidden{
+    display: none;
+}

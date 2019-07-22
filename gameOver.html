@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Congrats!</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./assets/style.css">
+        <script
+  src="http://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div id="end" class="flex-center flex-column">
+                <h1 id="finalScore">0</h1>
+                <form>
+                    <input type="text" name="username" id="username" placeholder="username"/>
+                    <button type="submit" id="saveScoreBtn" class="btn" onclick="saveHighScore(event)" disabled>Save</button>
+                </form>
+                <a href="index.html" class="btn">Play Again</a>
+            </div>
+        </div>
+
+        <script src="./assets/gameOver.js" async defer></script>
+    </body>
+</html>
