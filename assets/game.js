@@ -75,7 +75,7 @@ getNewQuestion = () => {
     currentQuestion = availableQuestions[questionIndex].question;
     // console.log(currentQuestion)
     docQuestion.append(currentQuestion);
-    for(let x =0,x<docChoices.length;x++){
+    for(let x =0;x<docChoices.length;x++){
         console.log(docChoices[x]);
     }
     // choices.forEach(choice => {
