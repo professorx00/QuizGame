@@ -29,7 +29,7 @@
                                 <p class="hud-prefix" id="progressText">
                                    Score
                                 </p>
-                                <p id="scoreDisplay">0</p>
+                                <p class="scoreDisplay">0</p>
                             </div>
                     </div>
                 </div>
@@ -61,14 +61,25 @@
                 </div>
         </div>
         <div class="container gameOver hidden">
-                <div id="end" class="flex-center flex-column">
-                    <h1 id="finalScore">0</h1>
-                    <form>
-                        <input type="text" name="username" id="username" placeholder="username"/>
-                        <button type="button" id="saveScoreBtn" class="btn" onclick="saveHighScore(event)">Save</button>
-                    </form>
-                    <a href="index.html" class="btn">Play Again</a>
+                <div class="row">
+                    <div id="end" class="col-md-12 text-center m-5">
+                        <h1>Final Score</h1><h1 class="scoreDisplay"></h1>
+                    </div>
                 </div>
+               <div class="row">
+                   <div class="col-md-12 align-center justify-center text-center m-5">
+                       <div class="hidden" id="displayHighScores"></div>
+                      <form>
+                            <input type="text" name="username" id="username" placeholder="username"/>
+                            <button type="button" id="highscore" class="btn btn-primary">Save High Score</button>
+                   </form> 
+                   </div>
+               </div>
+               <div class="row">
+                   <div class="col-md-12 text-center m-5">
+                       <a href="index.html" class="btn btn-primary">Play Again</a>
+                   </div>
+               </div>
             </div>
         
         <script src="./assets/game.js" ></script>

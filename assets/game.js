@@ -1,9 +1,10 @@
 const docQuestion = $("#question");
 const docChoices = $("p.choice-text");
-const docScore = $("#scoreDisplay");
+const docScore = $(".scoreDisplay");
 const docProgressText = $("#progressText");
 const docProgressBarFullFill = $("#progressBarFull");
 const docHighSore = $("#highscore");
+const docInput = $("#username");
 let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
@@ -11,9 +12,10 @@ let questionCounter = 0;
 let availableQuestions =[]
 let questions = [];
 const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 10;
+const MAX_QUESTIONS = 3;
 let choices = [];
-
+let counterUsers = 0;
+let highScoresArray =[]
 let highScores = {};
 
 
@@ -52,6 +54,8 @@ startGame = () => {
     getNewQuestion();
 }
 GameOver = () => {
+    finalScore();
+
     $("div.game").hide();
     $("div.gameOver").show();
 }
@@ -77,6 +81,9 @@ getNewQuestion = () => {
     
 }
 
+finalScore = () =>{
+    docScore.text(score);
+}
 
 docChoices.on("click",(e)=>{
     if (!acceptingAnswers) { return; };
@@ -107,3 +114,16 @@ docChoices.on("click",(e)=>{
 
 })
 
+docHighSore.on("click",(ele)=>{
+    counterUsers++;
+    const Userscore = {
+        score: score,
+        name: docInput.val()
+    }
+    highScoresArray.push(Userscore);
+    highScoresArray.sort((a,b) =>b.score-a.score)
+    highScoresArray.splice(5);
+
+    console.log(highScoresArray);
+    
+})
