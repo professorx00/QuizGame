@@ -1,4 +1,25 @@
-html {
+.hidden{
+  display: none;
+}
+
+#progessBar{
+  width: 20rem;
+  height: 4rem;
+  border: 0.3rem solid #56a5eb;
+  margin-top: 1rem;
+}
+#progressBarFull{
+  width:0%;
+  height: 3.5rem;
+  background-color:#56a5eb;
+}
+.correct{
+  background-color:#28a745;
+}
+.incorrect{
+  background-color: #dc3545;
+} 
+/* html {
     margin: 0;
     height: 100%;
   }
@@ -19,10 +40,10 @@ html {
     font-size: 4.5rem;
     border: 1.5rem solid blue;
     padding: 1rem;
-} 
+}  */
 
 /* Answer Styling */
-div.choice-container{
+/* div.choice-container{
     display:flex;
     flex-direction: row;
 }
@@ -34,9 +55,9 @@ p.choice-prefix{
 p.choice-text{
     border: blue .1rem solid;
     width:100%;
-}
+} */
 /* HUD STYLING */
- .hud-prefix {
+ /* .hud-prefix {
     text-align: center;
     font-size: 2rem;
 }
@@ -66,9 +87,9 @@ p.choice-text{
 }
 li{
     list-style: none;
-}
+} */
 /* Make the background and spinning the text. long tutorial to figure this one out*/
-  html::before,
+  /* html::before,
   html::after,
   body::before,
   body::after {
@@ -271,4 +292,4 @@ li{
     content: "";
     clear: both;
     display: table;
-  }
+  } */
