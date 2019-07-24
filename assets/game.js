@@ -10,59 +10,23 @@ const docHighScoreList = $("#highscorelist");
 const docCat = $("#Categories");
 const docLevel = $("#level");
 const docBtnChoose = $("#btnChoose");
+const docTimer = $("#timerText");
 
-let APIURL ="https://opentdb.com/api.php?amount=50&category=18&difficulty=easy&type=multiple";
-
+let APIURL = "https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple";
+let NumberofQuestions = 10;
 let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
-let availableQuestions =[]
+let availableQuestions = []
 let questions = [];
 const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 3;
+const MAX_QUESTIONS = 10;
 let choices = [];
 let counterUsers = 0;
-let highScoresArray =[]
+let highScoresArray = []
 let highScores = {};
-
-docBtnChoose.on("click", (e)=>{
-    e.preventDefault();
-    console.log("click choosen")
-    cat = "9"
-    level = "medium"
-    APIURL = `https://opentdb.com/api.php?amount=50&category=${cat}&difficulty=${level}&type=multiple `
-
-    console.log(APIURL);
-
-});
-
-
-fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple")
-    .then(res => {
-        return res.json();
-    })
-    .then(loadedQuestions => {
-        questions = loadedQuestions.results.map(loadQuestion => {
-           
-            const formattedQuestion = {
-                question: loadQuestion.question
-            };
-
-            const answerChoices = [...loadQuestion.incorrect_answers];
-            formattedQuestion.answer = Math.floor(Math.random() * 4) + 1;
-            answerChoices.splice(formattedQuestion.answer - 1, 0, loadQuestion.correct_answer);
-            answerChoices.forEach((choice, index) => {
-                formattedQuestion["choice" + (index + 1)] = choice;
-            });
-            return formattedQuestion;
-        })
-
-        startGame();
-    })
-    .catch(err => {
-        console.log(err);
-    });
+let response;
 
 startGame = () => {
     questionCounter = 0;
@@ -72,57 +36,80 @@ startGame = () => {
 }
 GameOver = () => {
     finalScore();
+    $("div.titleScreen").hide();
     $("div.game").hide();
     $("div.gameOver").show();
 }
-
+Timer = function (time) {
+    time--;
+}
+let CountdownRunning= false;
 getNewQuestion = () => {
-    if (availableQuestions.length == 0 || questionCounter>=MAX_QUESTIONS){
-            GameOver();
+    timeCounter = 30
+    count = 10
+    const myFunction = () => {
+        count--
+        docTimer.text(count)
+        console.log(count)
+        tcounter = setTimeout(myFunction, 1000)
+        CountdownRunning = true;
+        if(count<=0){
+            console.log(count)
+            clearTimeout(tcounter)
+            GameOver()
         }
+        
+    }
+    if(!CountdownRunning){
+        Tout = setTimeout(myFunction(), 1000)
+    }
+    
+    if (availableQuestions.length == 0 || questionCounter >= MAX_QUESTIONS) {
+        GameOver();
+    }
     questionCounter++;
     docProgressBarFullFill.css("width", `${(questionCounter / MAX_QUESTIONS) * 100}%`);
     docProgressText.text(`Question: ${questionCounter}/${MAX_QUESTIONS}`);
     let questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
     docQuestion.html(currentQuestion['question']);
-    for(let x=0;x<4;x++){
-        if($(docChoices[x]).attr("id")==`choice${x+1}`){
-            $(docChoices[x]).html(currentQuestion[`choice${x+1}`])
+    for (let x = 0; x < 4; x++) {
+        if ($(docChoices[x]).attr("id") == `choice${x + 1}`) {
+            $(docChoices[x]).html(currentQuestion[`choice${x + 1}`])
         }
     }
-    
+
     availableQuestions.splice(questionIndex, 1);
     acceptingAnswers = true;
-    
+
+    // Timer(timeCounter);
+
 }
 
-finalScore = () =>{
+finalScore = () => {
     docScore.text(score);
 }
 
-docChoices.on("click",(e)=>{
+docChoices.on("click", (e) => {
     if (!acceptingAnswers) { return; };
     acceptingAnswers = false;
     const selectedChoice = e.target;
     const selectedAnswer = selectedChoice.dataset['number'];
 
     if (selectedAnswer == currentQuestion.answer) {
-        $(e.target).attr("data-right","correct")
+        $(e.target).attr("data-right", "correct")
         $(e.target).addClass("correct")
-        console.log($(e.target));
     }
-    else{
+    else {
         $(e.target).addClass("incorrect")
     }
-    console.log($(e.target.class))
-    if ( $(e.target).attr("data-right") === 'correct') {
+    if ($(e.target).attr("data-right") === 'correct') {
         score += CORRECT_BONUS;
         docScore.text(score)
     }
     $(e).addClass("incorrect");
     setTimeout(() => {
-        $(e.target).attr("data-right","")
+        $(e.target).attr("data-right", "")
         $(e.target).removeClass("correct")
         $(e.target).removeClass("incorrect")
         getNewQuestion();
@@ -130,3 +117,47 @@ docChoices.on("click",(e)=>{
 
 })
 
+docBtnChoose.on("click", (e) => {
+    e.preventDefault();
+    cat = docCat.val()
+    level = docLevel.val()
+    APIURL = `https://opentdb.com/api.php?amount=${NumberofQuestions}&category=${cat}&difficulty=${level}&type=multiple `
+    fetch(APIURL)
+        .then(res => {
+            return res.json();
+        })
+        .then(loadedQuestions => {
+            if (loadedQuestions.response_code == 0) {
+
+                response = true;
+                questions = loadedQuestions.results.map(loadQuestion => {
+
+                    const formattedQuestion = {
+                        question: loadQuestion.question
+                    };
+
+                    const answerChoices = [...loadQuestion.incorrect_answers];
+                    formattedQuestion.answer = Math.floor(Math.random() * 4) + 1;
+                    answerChoices.splice(formattedQuestion.answer - 1, 0, loadQuestion.correct_answer);
+                    answerChoices.forEach((choice, index) => {
+                        formattedQuestion["choice" + (index + 1)] = choice;
+                    });
+                    return formattedQuestion;
+                })
+
+                startGame();
+                $("div.titleScreen").hide();
+                $("div.gameOver").hide();
+                $("div.game").show();
+            }
+            else {
+                $("#error").show();
+                response = false;
+            }
+        })
+        .catch(err => {
+        });
+
+
+
+});

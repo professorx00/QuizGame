@@ -17,8 +17,18 @@
     <div class="container titleScreen text-center align-center">
         <div class="row">
             <div class="col-md-12">
-                <h1>Quiz Show</h1>
-                <form>
+                    <h1 id="title">
+                            <em>T</em>
+                            <em class="planet left">R</em>
+                            <em>I</em>
+                            <em>V</em>
+                            <em class="planet right">A</em>
+                            <em>G</em>
+                            <em class="planet left">A</em>
+                            <em>M</em>
+                            <em class="planet right">E</em>
+                    </h1>
+                <form id="choices">
                     Categories Available:
                     <select id="Categories">
                         <option value="9">General Knownledge</option>
@@ -43,25 +53,35 @@
                     <button id="btnChoose">Choose</button>
                 </form>
             </div>
+            <div class="row">
+                <div class="col-md-12 text-center hidden" id="error">
+                    <h1 id="errorMessage" class="text-center">Please Choose Another Category or Level. The database does not have enough questions to proceed.</h1>
+                </div>
+            </div>
         </div>
     </div>
     <div class="container game hidden">
         <div class="row">
             <div class="col-md-12 justify-center align-center mb-3">
                 <div class="row">
-                    <div class="col-md-6" id="hud-items">
-                        <p class="hud-prefix" id="progressText">
+                    <div class="col-md-4" id="hud-items">
+                        <div class="hud-prefix" id="progressText">
                             Question
-                        </p>
+                        </div>
                         <div id="progessBar">
                             <div id="progressBarFull"></div>
                         </div>
                     </div>
-                    <div class="col-md-6" id="hud-items">
-                        <p class="hud-prefix" id="progressText">
+                    <div class="col-md-4" id="timer">
+                        <h1 class="timerText" id="timerText">0</h1>
+                    </div>
+                    <div class="col-md-4" id="hud-items">
+                        <div class="hud-prefix" id="progressText">
                             Score
-                        </p>
-                        <p class="scoreDisplay">0</p>
+                        </div>
+                        <div>
+                            <span class="scoreDisplay">0</span>
+                        </div>
                     </div>
                 </div>
             </div>
