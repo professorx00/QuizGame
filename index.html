@@ -1,87 +1,105 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Quiz Game</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="./assets/style.css">
-        <script
-  src="http://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <div class="container game">
-            <div class="row">
-                <div class="col-md-12 justify-center align-center mb-3">
-                    <div class="row">
-                        <div class="col-md-6" id="hud-items">
-                            <p class="hud-prefix" id="progressText">
-                                Question
-                            </p>
-                            <div id="progessBar">
-                                <div id="progressBarFull"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6" id="hud-items">
-                                <p class="hud-prefix" id="progressText">
-                                   Score
-                                </p>
-                                <p class="scoreDisplay">0</p>
-                            </div>
-                    </div>
-                </div>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Quiz Game</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/style.css">
+    <script src="http://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container titleScreen text-center align-center">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Quiz Show</h1>
+                <form>
+                    Categories Available:
+                    <select name="Categories">
+                        <option>Cat 1</option>
+                        <option>Cat 2</option>
+                        <option>Cat 3</option>
+                        <option>Cat 4</option>
+                    </select>
+                    <p>Level:
+                    <select name="level">
+                        <option>Easy</option>
+                        <option>Medium</option>
+                        <option>Hard</option>
+                    </select></p>
+
+                    <button class="categories">Choose</button>
+                </form>
             </div>
-            <div class="row">
-                <div class="col-md-12 justify-content-center text-center mb-3">
-                    <h1 id="question" class="questionText">What is the answer to the question?</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 choice-container">
-                    <p class="choice-prefix">A</p>
-                    <p class="choice-text" id="choice1" data-number="1"></p>
-                </div>
-                <div class="col-md-6 choice-container">
-                        <p class="choice-prefix">B</p>
-                        <p class="choice-text"  id="choice2" data-number="2"></p>
-                </div>
-            </div>
-            <div class="row">
-                    <div class="col-md-6 choice-container">
-                        <p class="choice-prefix ">C</p>
-                        <p class="choice-text"   id="choice3" data-number="3"></p>
-                    </div>
-                    <div class="col-md-6 choice-container">
-                            <p class="choice-prefix">D</p>
-                            <p class="choice-text"  id="choice4"  data-number="4"></p>
-                    </div>
-                </div>
         </div>
-        <div class="container gameOver hidden">
+    </div>
+    <div class="container game hidden">
+        <div class="row">
+            <div class="col-md-12 justify-center align-center mb-3">
                 <div class="row">
-                    <div id="end" class="col-md-12 text-center m-5">
-                        <h1>Final Score</h1><h1 class="scoreDisplay"></h1>
+                    <div class="col-md-6" id="hud-items">
+                        <p class="hud-prefix" id="progressText">
+                            Question
+                        </p>
+                        <div id="progessBar">
+                            <div id="progressBarFull"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" id="hud-items">
+                        <p class="hud-prefix" id="progressText">
+                            Score
+                        </p>
+                        <p class="scoreDisplay">0</p>
                     </div>
                 </div>
-               <div class="row">
-                   <div class="col-md-12 align-center justify-center text-center m-5">
-                       <div class="hidden" id="displayHighScores"></div>
-                      <form>
-                            <input type="text" name="username" id="username" placeholder="username"/>
-                            <button type="button" id="highscore" class="btn btn-primary">Save High Score</button>
-                   </form> 
-                   </div>
-               </div>
-               <div class="row">
-                   <div class="col-md-12 text-center m-5">
-                       <a href="index.html" class="btn btn-primary">Play Again</a>
-                   </div>
-               </div>
             </div>
-        
-        <script src="./assets/game.js" ></script>
-    </body>
+        </div>
+        <div class="row">
+            <div class="col-md-12 justify-content-center text-center mb-3">
+                <h1 id="question" class="questionText">What is the answer to the question?</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 choice-container">
+                <p class="choice-prefix">A</p>
+                <p class="choice-text" id="choice1" data-number="1"></p>
+            </div>
+            <div class="col-md-6 choice-container">
+                <p class="choice-prefix">B</p>
+                <p class="choice-text" id="choice2" data-number="2"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 choice-container">
+                <p class="choice-prefix ">C</p>
+                <p class="choice-text" id="choice3" data-number="3"></p>
+            </div>
+            <div class="col-md-6 choice-container">
+                <p class="choice-prefix">D</p>
+                <p class="choice-text" id="choice4" data-number="4"></p>
+            </div>
+        </div>
+    </div>
+    <div class="container gameOver hidden">
+        <div class="row">
+            <div id="end" class="col-md-12 text-center m-5">
+                <h1>Final Score</h1>
+                <h1 class="scoreDisplay"></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center m-5">
+                <a href="index.html" class="btn btn-primary">Play Again</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/game.js"></script>
+</body>
+
 </html>

@@ -5,6 +5,9 @@ const docProgressText = $("#progressText");
 const docProgressBarFullFill = $("#progressBarFull");
 const docHighSore = $("#highscore");
 const docInput = $("#username");
+const docHighScoreContainer = $("#highScoreContainer");
+const docHighScoreList = $("#highscorelist");
+
 let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
@@ -55,7 +58,6 @@ startGame = () => {
 }
 GameOver = () => {
     finalScore();
-
     $("div.game").hide();
     $("div.gameOver").show();
 }
@@ -114,16 +116,3 @@ docChoices.on("click",(e)=>{
 
 })
 
-docHighSore.on("click",(ele)=>{
-    counterUsers++;
-    const Userscore = {
-        score: score,
-        name: docInput.val()
-    }
-    highScoresArray.push(Userscore);
-    highScoresArray.sort((a,b) =>b.score-a.score)
-    highScoresArray.splice(5);
-
-    console.log(highScoresArray);
-    
-})

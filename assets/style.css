@@ -47,3 +47,6 @@ p.choice-text{
 .hidden{
     display: none;
 }
+li{
+    list-style: none;
+}
