@@ -7,6 +7,11 @@ const docHighSore = $("#highscore");
 const docInput = $("#username");
 const docHighScoreContainer = $("#highScoreContainer");
 const docHighScoreList = $("#highscorelist");
+const docCat = $("#Categories");
+const docLevel = $("#level");
+const docBtnChoose = $("#btnChoose");
+
+let APIURL ="https://opentdb.com/api.php?amount=50&category=18&difficulty=easy&type=multiple";
 
 let currentQuestion = {};
 let acceptingAnswers = false;
@@ -21,7 +26,16 @@ let counterUsers = 0;
 let highScoresArray =[]
 let highScores = {};
 
+docBtnChoose.on("click", (e)=>{
+    e.preventDefault();
+    console.log("click choosen")
+    cat = "9"
+    level = "medium"
+    APIURL = `https://opentdb.com/api.php?amount=50&category=${cat}&difficulty=${level}&type=multiple `
 
+    console.log(APIURL);
+
+});
 
 
 fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple")
