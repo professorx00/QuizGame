@@ -265,3 +265,10 @@ li{
       transform: rotate(1turn);
     }
   }
+
+
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
