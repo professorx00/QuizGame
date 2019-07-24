@@ -35,6 +35,7 @@ startGame = () => {
     getNewQuestion();
 }
 GameOver = () => {
+    clearTimeout(Tout)
     finalScore();
     $("div.titleScreen").hide();
     $("div.game").hide();
@@ -46,22 +47,24 @@ Timer = function (time) {
 let CountdownRunning= false;
 getNewQuestion = () => {
     timeCounter = 30
-    count = 10
+    count = 30
     const myFunction = () => {
         count--
         docTimer.text(count)
-        console.log(count)
         tcounter = setTimeout(myFunction, 1000)
         CountdownRunning = true;
         if(count<=0){
-            console.log(count)
             clearTimeout(tcounter)
+            clearTimeout(Tout)
             GameOver()
         }
         
     }
     if(!CountdownRunning){
         Tout = setTimeout(myFunction(), 1000)
+    }
+    else{
+        clearTimeout(Tout);
     }
     
     if (availableQuestions.length == 0 || questionCounter >= MAX_QUESTIONS) {
