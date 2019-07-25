@@ -1,7 +1,7 @@
 const docQuestion = $("#question");
 const docChoices = $("p.choice-text");
 const docScore = $(".scoreDisplay");
-const docProgressText = $("#progressText");
+const docQuestionText = $("#hudQuestionNumber");
 const docProgressBarFullFill = $("#progressBarFull");
 const docHighSore = $("#highscore");
 const docInput = $("#username");
@@ -72,7 +72,7 @@ getNewQuestion = () => {
     }
     questionCounter++;
     docProgressBarFullFill.css("width", `${(questionCounter / MAX_QUESTIONS) * 100}%`);
-    docProgressText.text(`Question: ${questionCounter}/${MAX_QUESTIONS}`);
+    docQuestionText.text(`Question: ${questionCounter}/${MAX_QUESTIONS}`);
     let questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
     docQuestion.html(currentQuestion['question']);

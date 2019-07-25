@@ -14,73 +14,74 @@
 </head>
 
 <body>
-    <div class="titleScreen">
-        <div class="col titleLogo">
-            <h1 id="title">
-                <em>T</em>
-                <em class="planet left">R</em>
-                <em>I</em>
-                <em class="planet left">V</em>
-                <em>I</em>
-                <em class="planet right">A</em>
-                <em>G</em>
-                <em class="planet left">A</em>
-                <em>M</em>
-                <em class="planet right">E</em>
-            </h1>
-        </div>
-        <div class="col formSelect">
-            <form id="choices">
-                Categories Available:
-                <select id="Categories">
-                    <option value="9">General Knownledge</option>
-                    <option value="10">Books</option>
-                    <option value="32">Animation</option>
-                    <option value="20">Mythology</option>
-                    <option value="27">Animal</option>
-                    <option value="19">Mathmatics</option>
-                    <option value="17">Science & Nature</option>
-                    <option value="11">Films</option>
-                    <option value="15">Video Games</option>
-                    <option value="14">Television</option>
-                    <option value="16">Board Games</option>
-                </select>
-                <p>Level:
-                    <select id="level">
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
-                    </select></p>
+    <div class="gamecontainer">
+        <div class="titleScreen hidden">
+            <div class="col titleLogo">
+                <h1 id="title" class="titleLogo">
+                    <em class="titleLogo">T</em>
+                    <em class="planet left titleLogo">R</em>
+                    <em class="titleLogo">I</em>
+                    <em class="titleLogo">V</em>
+                    <em class="titleLogo">I</em>
+                    <em class="planet right titleLogo">A</em>
+                    <em class="titleLogo">G</em>
+                    <em class="planet left titleLogo">A</em>
+                    <em class="titleLogo">M</em>
+                    <em class="planet right titleLogo">E</em>
+                </h1>
+            </div>
+            <div class="col formSelect">
+                <form id="choices">
+                    Categories Available:
+                    <select id="Categories">
+                        <option value="9">General Knownledge</option>
+                        <option value="10">Books</option>
+                        <option value="32">Animation</option>
+                        <option value="20">Mythology</option>
+                        <option value="27">Animal</option>
+                        <option value="19">Mathmatics</option>
+                        <option value="17">Science & Nature</option>
+                        <option value="11">Films</option>
+                        <option value="15">Video Games</option>
+                        <option value="14">Television</option>
+                        <option value="16">Board Games</option>
+                    </select>
+                    <p>Level Available:
+                        <select id="level">
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select></p>
 
-                <button id="btnChoose">Choose</button>
-            </form>
+                    <a href="#" class="myButton" id="btnChoose">Choose</a>
+                </form>
+            </div>
+            <div class="error" id="error">
+                <h1 id="errorMessage">Please Choose Another Category or Level. The database does not have enough
+                    questions
+                    to proceed.</h1>
+            </div>
         </div>
-        <div class="error hidden" id="error">
-            <h1 id="errorMessage">Please Choose Another Category or Level. The database does not have enough questions
-                to proceed.</h1>
-        </div>
-    </div>
-    </div>
-    <div class="container game hidden">
-                    <div class="hud-items" id="hud-items">
-                        <div class="hud-prefix" id="hudQuestionNumber">
-                            Question
-                        </div>
-                        <div id="progessBar">
-                            <div id="progressBarFull"></div>
-                        </div>
-                    </div>
-                    <div class="hud-items" id="hudTimer">
-                        <h1 class="timerText" id="timerText">0</h1>
-                    </div>
-                    <div class="hud-items" >
-                        <div class="hud-prefix" id="hudScoreNumber">
-                            Score
-                        </div>
-                        <div>
-                            <span class="scoreDisplay">0</span>
-                        </div>
-                    </div>
+        <div class="container game ">
+            <div class="hud-items" id="hud-items">
+                <div class="hud-prefix" id="hudQuestionNumber">
+                    Question
+                </div>
+                <div id="progessBar">
+                    <div id="progressBarFull"></div>
+                </div>
+            </div>
+            <div class="hud-items" id="hudTimer">
+                <h1 class="timerText" id="timerText">0</h1>
+            </div>
+            <div class="hud-items">
+                <div class="hud-prefix" id="hudScoreNumber">
+                    Score
+                </div>
+                <div>
+                    <span class="scoreDisplay">0</span>
+                </div>
+            </div>
             <div class="col">
                 <h1 id="question" class="questionText">What is the answer to the question?</h1>
             </div>
@@ -100,20 +101,20 @@
                 <p class="choice-prefix">D</p>
                 <p class="choice-text" id="choice4" data-number="4"></p>
             </div>
-    </div>
-    <div class="container gameOver hidden">
-        <div class="row">
-            <div id="end" class="col-md-12 text-center m-5">
+        </div>
+        <div class="container gameOver hidden">
+            <div id="end" class="col">
                 <h1>Final Score</h1>
                 <h1 class="scoreDisplay"></h1>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center m-5">
+            <div class="col">
                 <a href="index.html" class="btn btn-primary">Play Again</a>
             </div>
         </div>
     </div>
+    
+    
+
 
     <script src="./assets/game.js"></script>
 </body>
