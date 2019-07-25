@@ -1,5 +1,10 @@
+$(document).ready(function(){
+    $('select').formSelect();
+  });
+
+
 const docQuestion = $("#question");
-const docChoices = $("p.choice-text");
+const docChoices = $(".choice-text");
 const docScore = $(".scoreDisplay");
 const docQuestionText = $("#hudQuestionNumber");
 const docProgressBarFullFill = $("#progressBarFull");
@@ -11,6 +16,7 @@ const docCat = $("#Categories");
 const docLevel = $("#level");
 const docBtnChoose = $("#btnChoose");
 const docTimer = $("#timerText");
+
 
 let APIURL = "https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple";
 let NumberofQuestions = 10;
@@ -47,7 +53,7 @@ Timer = function (time) {
 let CountdownRunning= false;
 getNewQuestion = () => {
     timeCounter = 30
-    count = 30
+    count = 3000
     const myFunction = () => {
         count--
         docTimer.text(count)

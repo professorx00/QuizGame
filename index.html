@@ -6,101 +6,130 @@
     <title>Quiz Game</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/style.css">
     <script src="http://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://kit.fontawesome.com/196b85f85d.js"></script>
 </head>
 
 <body>
-    <div class="gamecontainer">
-        <div class="titleScreen hidden">
-            <div class="col titleLogo">
-                <h1 id="title" class="titleLogo">
-                    <em class="titleLogo">T</em>
-                    <em class="planet left titleLogo">R</em>
-                    <em class="titleLogo">I</em>
-                    <em class="titleLogo">V</em>
-                    <em class="titleLogo">I</em>
-                    <em class="planet right titleLogo">A</em>
-                    <em class="titleLogo">G</em>
-                    <em class="planet left titleLogo">A</em>
-                    <em class="titleLogo">M</em>
-                    <em class="planet right titleLogo">E</em>
-                </h1>
+    <div class="container gamecontainer">
+        <div class=" titleScreen container">
+            <div class="row">
+                <div class="col s12 titleLogo">
+                    <h1 id="title" class="titleLogo">
+                        TRIVIA GAME
+                    </h1>
+                </div>
             </div>
-            <div class="col formSelect">
-                <form id="choices">
-                    Categories Available:
-                    <select id="Categories">
-                        <option value="9">General Knownledge</option>
-                        <option value="10">Books</option>
-                        <option value="32">Animation</option>
-                        <option value="20">Mythology</option>
-                        <option value="27">Animal</option>
-                        <option value="19">Mathmatics</option>
-                        <option value="17">Science & Nature</option>
-                        <option value="11">Films</option>
-                        <option value="15">Video Games</option>
-                        <option value="14">Television</option>
-                        <option value="16">Board Games</option>
-                    </select>
-                    <p>Level Available:
-                        <select id="level">
-                            <option value="easy">Easy</option>
-                            <option value="medium">Medium</option>
-                            <option value="hard">Hard</option>
-                        </select></p>
+            <div class="row">
+                <div class="error col s12 hidden " id="error">
+                    <h4 id="errorMessage hidden">
+                        Please choose another Category or Level. The database does not have enough questions to proceed.
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <h4>You will have 30 seconds per question to answer. If you fail to answer before time is up, you will lose the game. </h4>
+                    <h4>Please select a Category and Level to begin.</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 formSelect">
+                    <form id="choices">
+                        Categories Available:
+                        <select id="Categories">
+                            <option value="9">General Knownledge</option>
+                            <option value="10">Books</option>
+                            <option value="32">Animation</option>
+                            <option value="20">Mythology</option>
+                            <option value="27">Animal</option>
+                            <option value="19">Mathmatics</option>
+                            <option value="17">Science & Nature</option>
+                            <option value="11">Films</option>
+                            <option value="15">Video Games</option>
+                            <option value="14">Television</option>
+                            <option value="16">Board Games</option>
+                        </select>
+                        <p>Level Available:
+                            <select id="level">
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                            </select></p>
 
-                    <a href="#" class="myButton" id="btnChoose">Choose</a>
-                </form>
+                        <a href="#" class="btn waves-effect waves-light" id="btnChoose"><i
+                                class="fas fa-angle-double-right"> Confirm </i><span> </span><i
+                                class="fas fa-angle-double-right"></i></a>
+                    </form>
+                </div>
             </div>
-            <div class="error" id="error">
-                <h1 id="errorMessage">Please Choose Another Category or Level. The database does not have enough
-                    questions
-                    to proceed.</h1>
-            </div>
+
+
         </div>
-        <div class="container game ">
-            <div class="hud-items" id="hud-items">
-                <div class="hud-prefix" id="hudQuestionNumber">
-                    Question
+        <div class="container game hidden">
+            <div class="row hud-items" id="hud-items">
+                <div class="col s6">
+                    <div class="hud-prefix" id="hudQuestionNumber">
+                        Question
+                    </div>
                 </div>
-                <div id="progessBar">
-                    <div id="progressBarFull"></div>
-                </div>
-            </div>
-            <div class="hud-items" id="hudTimer">
-                <h1 class="timerText" id="timerText">0</h1>
-            </div>
-            <div class="hud-items">
-                <div class="hud-prefix" id="hudScoreNumber">
-                    Score
-                </div>
-                <div>
-                    <span class="scoreDisplay">0</span>
+
+                <div class="col s6">
+                    <div class="hud-prefix hud-items" id="hudScoreNumber">
+                        Score
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <h1 id="question" class="questionText">What is the answer to the question?</h1>
+            <div class="row hud-items">
+                <div class="col s6">
+                    <div id="progessBar">
+                        <div id="progressBarFull"></div>
+                    </div>
+                </div>
+
+                <div class="col s6">
+                    <div>
+                        <div class="scoreDisplay hud-items" id="hudScore">0</div>
+                    </div>
+                </div>
             </div>
-            <div class="colChoice">
-                <p class="choice-prefix">A</p>
-                <p class="choice-text" id="choice1" data-number="1"></p>
+            <div class="row">
+                <div class="col s12">
+                    <div class="hud-items col s12" id="hudTimer">
+                        Time Left: <span class="timerText" id="timerText">0</span>
+                    </div>
+                </div>
             </div>
-            <div class="colChoice">
-                <p class="choice-prefix">B</p>
-                <p class="choice-text" id="choice2" data-number="2"></p>
+            <div class="row">
+                <div class="col s12">
+                    <h3 id="question" class="questionText">What is the answer to the question?</h3>
+                </div>
             </div>
-            <div class="colChoice">
-                <p class="choice-prefix ">C</p>
-                <p class="choice-text" id="choice3" data-number="3"></p>
+            <div class="row">
+                <div class="colChoice col s6">
+                    <div class="choice-prefix btn waves-effect waves-light">A</div>
+                    <div class="choice-text btn waves-effect waves-light" id="choice1" data-number="1"></div>
+                </div>
+                <div class="colChoice col s6">
+                    <div class="choice-prefix btn waves-effect waves-light">B</div>
+                    <div class="choice-text btn waves-effect waves-light" id="choice2" data-number="2"></div>
+                </div>
             </div>
-            <div class="colChoice">
-                <p class="choice-prefix">D</p>
-                <p class="choice-text" id="choice4" data-number="4"></p>
+            <div class="row">
+                <div class="colChoice col s6">
+                    <div class="choice-prefix btn waves-effect waves-light">C</div>
+                    <div class="choice-text btn waves-effect waves-light" id="choice3" data-number="3"></div>
+                </div>
+                <div class="colChoice col s6">
+                    <div class="choice-prefix btn waves-effect waves-light">D</div>
+                    <div class="choice-text btn waves-effect waves-light" id="choice4" data-number="4"></div>
+                </div>
             </div>
+
         </div>
         <div class="container gameOver hidden">
             <div id="end" class="col">
@@ -112,8 +141,8 @@
             </div>
         </div>
     </div>
-    
-    
+
+
 
 
     <script src="./assets/game.js"></script>
