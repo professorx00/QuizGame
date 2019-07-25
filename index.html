@@ -7,38 +7,39 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="./assets/style.css">
+    
     <script src="http://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://kit.fontawesome.com/196b85f85d.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto|Schoolbell&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
 
 <body>
     <div class="container gamecontainer">
         <div class=" titleScreen container">
             <div class="row">
-                <div class="col s12 titleLogo">
-                    <h1 id="title" class="titleLogo">
-                        TRIVIA GAME
-                    </h1>
+                <div class="col s12 Logo">
+                    <img src="./assets/logo.png" alt="Trivia Game" id="logoImg">
                 </div>
             </div>
             <div class="row">
-                <div class="error col s12 hidden " id="error">
-                    <h4 id="errorMessage hidden">
+                <div class="error col s12 " id="error">
+                    <h4 id="errorMessage ">
                         Please choose another Category or Level. The database does not have enough questions to proceed.
                     </h4>
                 </div>
             </div>
             <div class="row">
-                <div class="col s12">
+                <div class="col s12 card">
                     <h4>You will have 30 seconds per question to answer. If you fail to answer before time is up, you will lose the game. </h4>
                     <h4>Please select a Category and Level to begin.</h4>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12 formSelect">
+                <div class="input-field col s12 formSelect card">
                     <form id="choices">
                         Categories Available:
                         <select id="Categories">
@@ -112,26 +113,26 @@
             <div class="row">
                 <div class="colChoice col s6">
                     <div class="choice-prefix btn waves-effect waves-light">A</div>
-                    <div class="choice-text btn waves-effect waves-light" id="choice1" data-number="1"></div>
+                    <div class="choice-text " id="choice1" data-number="1"></div>
                 </div>
                 <div class="colChoice col s6">
                     <div class="choice-prefix btn waves-effect waves-light">B</div>
-                    <div class="choice-text btn waves-effect waves-light" id="choice2" data-number="2"></div>
+                    <div class="choice-text " id="choice2" data-number="2"></div>
                 </div>
             </div>
             <div class="row">
                 <div class="colChoice col s6">
                     <div class="choice-prefix btn waves-effect waves-light">C</div>
-                    <div class="choice-text btn waves-effect waves-light" id="choice3" data-number="3"></div>
+                    <div class="choice-text " id="choice3" data-number="3"></div>
                 </div>
                 <div class="colChoice col s6">
                     <div class="choice-prefix btn waves-effect waves-light">D</div>
-                    <div class="choice-text btn waves-effect waves-light" id="choice4" data-number="4"></div>
+                    <div class="choice-text " id="choice4" data-number="4"></div>
                 </div>
             </div>
 
         </div>
-        <div class="container gameOver hidden">
+        <div class="container gameOver hidden animated">
             <div id="end" class="col">
                 <h1>Final Score</h1>
                 <h1 class="scoreDisplay"></h1>

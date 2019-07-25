@@ -45,7 +45,7 @@ GameOver = () => {
     finalScore();
     $("div.titleScreen").hide();
     $("div.game").hide();
-    $("div.gameOver").show();
+    $("div.gameOver").show().addClass("zoomIn");
 }
 Timer = function (time) {
     time--;
