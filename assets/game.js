@@ -53,7 +53,7 @@ Timer = function (time) {
 let CountdownRunning= false;
 getNewQuestion = () => {
     timeCounter = 30
-    count = 3000
+    count = 30
     const myFunction = () => {
         count--
         docTimer.text(count)
