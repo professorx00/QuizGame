@@ -8,10 +8,6 @@ $(document).ready(function () {
     const docScore = $(".scoreDisplay");
     const docQuestionText = $("#hudQuestionNumber");
     const docProgressBarFullFill = $("#progressBarFull");
-    // const docHighSore = $("#highscore");
-    // const docInput = $("#username");
-    // const docHighScoreContainer = $("#highScoreContainer");
-    // const docHighScoreList = $("#highscorelist");
     const docCat = $("#Categories").formSelect();
     const docLevel = $("#level").formSelect();
     const docBtnChoose = $("#btnChoose");
@@ -28,11 +24,7 @@ $(document).ready(function () {
     let questions = [];
     const CORRECT_BONUS = 10;
     const MAX_QUESTIONS = 10;
-    // let choices = [];
-    // let counterUsers = 0;
-    // let highScoresArray = []
-    // let highScores = {};
-    // let response;
+
 
     startGame = () => {
         questionCounter = 0;
